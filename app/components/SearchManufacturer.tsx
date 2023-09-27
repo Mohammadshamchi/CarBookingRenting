@@ -1,19 +1,20 @@
 "use client"
-import { Fragment, useState } from 'react';
+import {Fragment, useState} from 'react';
 import Image from 'next/image';
-import { manufacturers } from './constants';
-import { Combobox, Transition } from '@headlessui/react';
-import { SearchManufacturerProps } from '.';
+import {manufacturers} from './constants';
+import {Combobox, Transition} from '@headlessui/react';
+import {SearchManufacturerProps} from '.';
 
-const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManufacturerProps) => {
-    const [query, setQuery] = useState('');
+const SearchManufacturer = ({manufacturer, setManufacturer} : SearchManufacturerProps) => {
+    const [query,
+        setQuery] = useState('');
     const filteredManufacturers = query === ''
         ? manufacturers
         : manufacturers.filter((item) => item.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, "")));
 
     return (
         <div className='search-manufacturer'>
-            <Combobox>
+            <Combobox value={manufacturer} onChange={setManufacturer}>
                 <div className='relative w-full'>
                     <Combobox.Button className="absolute top-[14px]">
                         <Image
